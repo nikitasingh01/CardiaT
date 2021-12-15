@@ -1,0 +1,16 @@
+{% extends "idea/base.html" %}
+{% block content %}
+    {% for idea in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ idea.author }}</a>
+              <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2><a class="article-title" href="{% url 'view-idea' idea.id %}">{{ idea.title }}</a></h2>
+            <p class="article-content">{{ idea.content }}</p>
+          </div>
+        </article>
+        <h1>jiji</h1>
+    {% endfor %}
+{% endblock content %}

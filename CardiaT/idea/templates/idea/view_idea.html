@@ -1,0 +1,29 @@
+{% extends "idea/base.html" %}
+{% load crispy_forms_tags%}
+{% block content %}
+<h2>{{idea.title}}</h2>
+<h3>{{idea.date_posted}}</h3>
+<p>{{idea.content}}</p>
+    
+
+    <div class="content-selction">
+        
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="bottom-bottom mb-4">Add your comment</legend>
+                {{form|crispy }}
+            </fieldset>
+
+            <div class="form-group">
+                <button class="btn-btn-outline-info" type="submit">Submit</button>
+            </div>
+        </form>
+    
+        {%for comment in idea.comments.all %}
+            <h3> {{comment.description}}</h3><br>
+        {%endfor%}
+        
+    </div>    
+
+{% endblock content %}
