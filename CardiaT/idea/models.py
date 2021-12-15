@@ -14,9 +14,9 @@ class Idea(models.Model):
         return self.title
 
 class Comments(models.Model):
-    description = models.TextField()
+    description = models.CharField(max_length=100)
     pub_date = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    blog=models.ForeignKey(Idea, on_delete=models.CASCADE, related_name='comments')
+    idea=models.ForeignKey(Idea, on_delete=models.CASCADE, related_name='comments')
 
 # Create your models here.

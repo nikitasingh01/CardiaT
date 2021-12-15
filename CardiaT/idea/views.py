@@ -43,7 +43,7 @@ def detail(request,idea_id):
             form.instance.author=request.user
             form.instance.idea=idea
             form.save()
-            return HttpResponseRedirect(reverse('view-idea',args=(idea.id, )))
+            return HttpResponseRedirect(reverse('idea-view',args=(idea.id, )))
     else:
         form=Comment()
     

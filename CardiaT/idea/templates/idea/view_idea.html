@@ -1,9 +1,9 @@
 {% extends "idea/base.html" %}
 {% load crispy_forms_tags%}
 {% block content %}
-<h2>{{idea.title}}</h2>
-<h3>{{idea.date_posted}}</h3>
-<p>{{idea.content}}</p>
+<h2 class="content-title">{{idea.title}}</h2>
+<small class="text-muted">{{idea.date_posted}}</small>
+<p class="article-content">{{idea.content}}</p>
     
 
     <div class="content-selction">
@@ -11,7 +11,7 @@
         <form method="POST">
             {% csrf_token %}
             <fieldset class="form-group">
-                <legend class="bottom-bottom mb-4">Add your comment</legend>
+                <h4 class="bottom-bottom mb-4">Add your comment</h4>
                 {{form|crispy }}
             </fieldset>
 
@@ -21,7 +21,7 @@
         </form>
     
         {%for comment in idea.comments.all %}
-            <h3> {{comment.description}}</h3><br>
+            <p class="text-muted"> {{comment.description}}</p><br>
         {%endfor%}
         
     </div>    

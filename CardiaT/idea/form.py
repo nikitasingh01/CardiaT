@@ -12,4 +12,4 @@ class Blog_creation(forms.ModelForm):
 class Comment(forms.ModelForm):
     class Meta:
         model=Comments
-        fields=['description','pub_date']
+        fields=['description']
