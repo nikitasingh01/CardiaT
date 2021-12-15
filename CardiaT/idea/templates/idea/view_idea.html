@@ -1,29 +1,31 @@
-{% extends "idea/base.html" %}
-{% load crispy_forms_tags%}
-{% block content %}
-<h2 class="content-title">{{idea.title}}</h2>
-<small class="text-muted">{{idea.date_posted}}</small>
-<p class="article-content">{{idea.content}}</p>
-    
+{% extends "idea/base.html" %} {% load crispy_forms_tags%} {% block content %}
+<div class="content-title">
+  <h2>{{idea.title}}</h2>
+  <small class="text-muted">{{idea.date_posted}}</small>
+</div>
+<div class="article-content-view">
+  <p>{{idea.content}}</p>
+</div>
 
-    <div class="content-selction">
-        
-        <form method="POST">
-            {% csrf_token %}
-            <fieldset class="form-group">
-                <h4 class="bottom-bottom mb-4">Add your comment</h4>
-                {{form|crispy }}
-            </fieldset>
+<hr />
 
-            <div class="form-group">
-                <button class="btn-btn-outline-info" type="submit">Submit</button>
-            </div>
-        </form>
-    
-        {%for comment in idea.comments.all %}
-            <p class="text-muted"> {{comment.description}}</p><br>
-        {%endfor%}
-        
-    </div>    
+<div class="content-selction">
+  <form method="POST">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <h4 class="bottom-bottom mb-4">Add your comment</h4>
+      {{form|crispy }}
+    </fieldset>
+
+    <div class="form-group">
+      <button class="btn-btn-outline-info" type="submit">Submit</button>
+    </div>
+  </form>
+
+  {%for comment in idea.comments.all %}
+  <p class="text-muted">{{comment.description}}</p>
+  <br />
+  {%endfor%}
+</div>
 
 {% endblock content %}

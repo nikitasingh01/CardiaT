@@ -1,5 +1,10 @@
 {% extends "idea/base.html" %}
 {% block content %}
+    {% if not posts%}
+      <div class="alert alert-info">
+        <p>There are no ideas yet.</p>
+      </div>
+    {% endif %}
     {% for idea in posts %}
         <article class="media content-section">
           <div class="media-body">
@@ -8,7 +13,7 @@
               <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
             </div>
             <h2><a class="article-title" href="{% url 'idea-view' idea.id %}">{{ idea.title }}</a></h2>
-            <p class="article-content">{{ idea.content }}</p>
+            <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
           </div>
         </article>
         
