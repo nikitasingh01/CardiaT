@@ -18,14 +18,18 @@
     </fieldset>
 
     <div class="form-group">
-      <button class="btn-btn-outline-info" type="submit">Submit</button>
+      <button class="btn-color" type="submit">Submit</button>
     </div>
   </form>
-
-  {%for comment in idea.comments.all %}
-  <p class="text-muted">{{comment.description}}</p>
-  <br />
-  {%endfor%}
+  <div >
+    <ul>
+      {%for comment in idea.comments.all %}
+      <li ><p class="text-muted comments">{{comment.description}}</p></li>
+      <br />
+      {%endfor%}
+  </ul>
+  </div>
+  
 </div>
 
 {% endblock content %}
