@@ -1,10 +1,13 @@
 {% extends "idea/base.html" %} {% load crispy_forms_tags%} {% block content %}
-<div class="content-title">
-  <h2>{{idea.title}}</h2>
-  <small class="text-muted">{{idea.date_posted}}</small>
-</div>
 <div class="article-content-view">
-  <p>{{idea.content}}</p>
+  <div class="article-header">
+    <h2 class="idea-title">{{idea.title}}</h2>
+    <div class="header-comment-card">
+      <p class="idea-author">{{idea.author}}</p>
+      <p class="text-muted idea-date">{{idea.date_posted}}</p>
+    </div>
+  </div>
+  <p class="idea-content">{{idea.content}}</p>
 </div>
 
 <hr />
@@ -18,18 +21,21 @@
     </fieldset>
 
     <div class="form-group">
-      <button class="btn-color" type="submit">Submit</button>
+      <button type="submit" class="btn btn-color">Submit</button>
     </div>
   </form>
-  <div >
-    <ul>
-      {%for comment in idea.comments.all %}
-      <li ><p class="text-muted comments">{{comment.description}}</p></li>
-      <br />
-      {%endfor%}
-  </ul>
+  <hr />
+  <div class="comment-container">
+    {%for comment in idea.comments.all %}
+    <div class="comment-card">
+      <div class="header-comment-card">
+        <p class="text-muted author-text">{{comment.author}}</p>
+        <p class="text-muted comment-date">{{comment.pub_date}}</p>
+      </div>
+      <p class="text-muted comment-description">{{comment.description}}</p>
+    </div>
+    {%endfor%}
   </div>
-  
 </div>
 
 {% endblock content %}

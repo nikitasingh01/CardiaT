@@ -47,4 +47,4 @@ def detail(request,idea_id):
     else:
         form=Comment()
     
-    return render(request, 'idea/view_idea.html', {'idea':idea,'form':form})
+    return render(request, 'idea/view_idea.html', {'idea':idea,'form':form, 'view_idea': True})

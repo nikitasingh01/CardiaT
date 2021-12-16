@@ -1,24 +1,31 @@
-{% extends "idea/base.html" %}
-{% block content %}
-<div >
-  <input class="search" type="text" placeholder="Search..">
+{% extends "idea/base.html" %} {% block content %}
+<div class="header-comment-card">
+  <input class="search" type="text" placeholder="Search..." />
+  <a href="google.com">
+    <img
+      class="search-icon"
+      src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
+    />
+  </a>
 </div>
-    {% if not posts%}
-      <div class="alert alert-info">
-        <p>There are no ideas yet.</p>
-      </div>
-    {% endif %}
-    {% for idea in posts %}
-        <article class="media content-section">
-          <div class="media-body">
-            <div class="article-metadata">
-              <!-- <a class="mr-2" href="#">{{ idea.author }}</a> -->
-              <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
-            </div>
-            <h2><a class="article-title" href="{% url 'idea-view' idea.id %}">{{ idea.title }}</a></h2>
-            <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
-          </div>
-        </article>
-        
-    {% endfor %}
-{% endblock content %}
+{% if not posts%}
+<div class="alert alert-info">
+  <p>There are no ideas yet.</p>
+</div>
+{% endif %} {% for idea in posts %}
+<article class="media content-section">
+  <div class="media-body">
+    <div class="article-metadata">
+      <!-- <a class="mr-2" href="#">{{ idea.author }}</a> -->
+      <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
+    </div>
+    <h2>
+      <a class="article-title" href="{% url 'idea-view' idea.id %}"
+        >{{ idea.title }}</a
+      >
+    </h2>
+    <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
+  </div>
+</article>
+
+{% endfor %} {% endblock content %}
