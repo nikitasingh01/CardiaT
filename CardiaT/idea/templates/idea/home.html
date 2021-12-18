@@ -1,12 +1,22 @@
 {% extends "idea/base.html" %} {% block content %}
 <div class="header-comment-card">
-  <input class="search" type="text" placeholder="Search..." />
-  <a href="google.com">
+  <div>
+    <form action="{% url 'search-result' %}" method="post">
+      {%csrf_token%}
+      <fieldset>
+        <input class="search" type="text" name='search_text'> 
+      </fieldset>
+      <input type="submit" value="Submit">
+  
+    </form>
+  </div>
+  <!-- <input class="search" type="text" placeholder="Search..." /> -->
+  <!-- <a href="google.com">
     <img
       class="search-icon"
       src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
     />
-  </a>
+  </a> -->
 </div>
 {% if not posts%}
 <div class="alert alert-info">

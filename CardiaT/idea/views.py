@@ -17,6 +17,29 @@ def home(request):
     }
     return render(request, 'idea/home.html', context)
 
+def search(request):
+    search_text=request.POST['search_text']
+    search_text=search_text.lower()
+    array=Idea.objects.all()
+    result_array=[]
+    for i in range(len(array)):
+        title= array[i].title
+        title=title.lower()
+        author=array[i].author
+        
+        # author=author.lower()
+        
+
+        if search_text in title:
+            result_array.append(array[i])
+    context = {
+        'posts':result_array
+
+    }
+    
+    #     context={Idea.objects}
+
+    return render(request,'idea/home.html',context)
 
 
 @login_required 
@@ -48,3 +71,5 @@ def detail(request,idea_id):
         form=Comment()
     
     return render(request, 'idea/view_idea.html', {'idea':idea,'form':form, 'view_idea': True})
+
+

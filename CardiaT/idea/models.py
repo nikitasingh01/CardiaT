@@ -20,3 +20,4 @@ class Comments(models.Model):
     idea=models.ForeignKey(Idea, on_delete=models.CASCADE, related_name='comments')
 
 # Create your models here.
+
