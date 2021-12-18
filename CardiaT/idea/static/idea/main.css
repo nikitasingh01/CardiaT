@@ -16,6 +16,7 @@ h6 {
 
 ul {
   margin: 0;
+  background-color: #ccc;
 }
 
 .bg-steel {
@@ -45,6 +46,7 @@ ul {
   font-weight: 500;
   color: #dbeba3;
 }
+
 
 .content-section {
   background: #e3e9eb;

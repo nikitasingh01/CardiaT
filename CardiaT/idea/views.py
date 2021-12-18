@@ -41,7 +41,22 @@ def search(request):
 
     return render(request,'idea/home.html',context)
 
+def filter(request):
+    array=Idea.objects.all()
+    filter=request.POST['Filter']
+    array=list(array)
+    if filter=='latest':
+        array.sort(key=lambda x: x.date_posted, reverse=True)
+    elif filter=='oldest':
+        array.sort(key=lambda x: x.date_posted, reverse=False)
+    elif filter=='most commented':
+        pass
+    context={
+        'posts':array
+    }
+    print(array)
 
+    return render(request,'idea/home.html',context)
 @login_required 
 def add(request):
     id=request.user.id
