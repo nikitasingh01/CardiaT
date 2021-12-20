@@ -1,31 +1,68 @@
 {% extends "idea/base.html" %} {% block content %}
-<div class="header-comment-card">
-  <input class="search" type="text" placeholder="Search..." />
-  <a href="google.com">
-    <img
-      class="search-icon"
-      src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
-    />
-  </a>
-</div>
-{% if not posts%}
-<div class="alert alert-info">
-  <p>There are no ideas yet.</p>
-</div>
-{% endif %} {% for idea in posts %}
-<article class="media content-section">
-  <div class="media-body">
-    <div class="article-metadata">`
-      <!-- <a class="mr-2" href="#">{{ idea.author }}</a> -->
-      <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
-    </div>
-    <h2>
-      <a class="article-title" href="{% url 'idea-view' idea.id %}"
-        >{{ idea.title }}</a
-      >
-    </h2>
-    <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
-  </div>
-</article>
 
-{% endfor %} {% endblock content %}
+  <div class="header-comment-card">
+    <div>
+      <form action="{% url 'search-result' %}" method="post">
+        {%csrf_token%}
+        <fieldset>
+          <input class="search" type="text" name='search_text'> 
+        </fieldset>
+        <input type="submit" value="Submit">
+    
+      </form>
+    </div>
+    <!-- <input class="search" type="text" placeholder="Search..." /> -->
+    <!-- <a href="google.com">
+      <img
+        class="search-icon"
+        src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
+      />
+    </a> -->
+  </div>
+<main role="main" class="container main-body">
+  <div class="row">
+  {% if not posts%}
+  <div class="alert alert-info">
+    <p>There are no ideas yet.</p>
+  </div>
+  {% endif %} {% for idea in posts %}
+  <article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <!-- <a class="mr-2" href="#">{{ idea.author }}</a> -->
+        <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
+      </div>
+      <h2>
+        <a class="article-title" href="{% url 'idea-view' idea.id %}"
+          >{{ idea.title }}</a
+        >
+      </h2>
+      <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
+    </div>
+  </article>
+  {% endfor %}
+<div class="col-md-4">
+  <div class="content-section">
+    <ul class="list-group">
+      <!-- <li class="list-group-item list-group-item-light">Filter</li> -->
+      <form action="{% url 'filter-result' %}" method="post">
+        {%csrf_token%}
+        <fieldset>
+          <label for="filter">Choose a filter</label>
+
+          <select name="Filter" id="filter">
+            <option value="latest">Latest</option>
+            <option value="oldest">Oldest</option>
+            <option value="most_comments">Most Commented</option>
+          </select> 
+        </fieldset>
+        <input type="submit" value="Apply">
+      <li class="list-group-item list-group-item-light">Sort</li>
+      
+    </ul>
+    </p>
+  </div>
+</div>
+</main>       
+
+ {% endblock content %}

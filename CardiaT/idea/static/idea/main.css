@@ -16,6 +16,7 @@ h6 {
 
 ul {
   margin: 0;
+  background-color: #ccc;
 }
 
 .bg-steel {
@@ -45,6 +46,7 @@ ul {
   font-weight: 500;
   color: #dbeba3;
 }
+
 
 .content-section {
   background: #e3e9eb;
@@ -183,9 +185,7 @@ hr {
   right: 20px;
 }
 
-.comment-container {
-  /* border: 2px solid #eec1c1; */
-}
+
 
 .comment-card {
   border: solid #1d4c54;

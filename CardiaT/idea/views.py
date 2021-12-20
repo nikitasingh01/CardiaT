@@ -17,8 +17,46 @@ def home(request):
     }
     return render(request, 'idea/home.html', context)
 
+def search(request):
+    search_text=request.POST['search_text']
+    search_text=search_text.lower()
+    array=Idea.objects.all()
+    result_array=[]
+    for i in range(len(array)):
+        title= array[i].title
+        title=title.lower()
+        author=array[i].author
+        
+        # author=author.lower()
+        
 
+        if search_text in title:
+            result_array.append(array[i])
+    context = {
+        'posts':result_array
 
+    }
+    
+    #     context={Idea.objects}
+
+    return render(request,'idea/home.html',context)
+
+def filter(request):
+    array=Idea.objects.all()
+    filter=request.POST['Filter']
+    array=list(array)
+    if filter=='latest':
+        array.sort(key=lambda x: x.date_posted, reverse=True)
+    elif filter=='oldest':
+        array.sort(key=lambda x: x.date_posted, reverse=False)
+    elif filter=='most commented':
+        pass
+    context={
+        'posts':array
+    }
+    print(array)
+
+    return render(request,'idea/home.html',context)
 @login_required 
 def add(request):
     id=request.user.id
@@ -48,3 +86,5 @@ def detail(request,idea_id):
         form=Comment()
     
     return render(request, 'idea/view_idea.html', {'idea':idea,'form':form, 'view_idea': True})
+
+
