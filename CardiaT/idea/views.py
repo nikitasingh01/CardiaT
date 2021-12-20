@@ -62,12 +62,21 @@ def add(request):
     id=request.user.id
     if request.method=='POST':
         form=Blog_creation(request.POST)
+        
         if form.is_valid():
             form.instance.author=request.user
             form.save()
-            return redirect('home')
+            # return redirect('home')
+        # form=Tag(request.POST)
+        
+        # if form.is_valid():
+        #     # form.instance.author=request.user
+        #     form.save()
+        #     return redirect('idea-add')
     else:
         form=Blog_creation()
+        # form=Tag()
+    
     return render(request, 'idea/add_idea.html', {'form':form})
 
 def detail(request,idea_id):
