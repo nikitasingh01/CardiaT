@@ -38,6 +38,10 @@
         >
       </h2>
       <p class="article-content">{{ idea.content|truncatewords:40 }}</p>
+      <div class="article-metadata">
+        <!-- <a class="mr-2" href="#">{{ idea.author }}</a> -->
+        <small class="text-muted">{{ idea.tag_name}}</small>
+      </div>
     </div>
   </article>
   {% endfor %}
