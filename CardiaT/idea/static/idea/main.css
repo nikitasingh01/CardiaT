@@ -27,8 +27,16 @@ ul {
   height: 5rem;
 }
 
-.main-body {
-  margin-top: 8rem;
+.base{
+  padding-top: 2rem;
+}
+
+.top {
+  flex: 1;
+}
+
+.parent {
+  margin-top: 2rem;
 }
 
 .site-header .navbar-nav .nav-link {
@@ -46,7 +54,6 @@ ul {
   font-weight: 500;
   color: #dbeba3;
 }
-
 
 .content-section {
   background: #e3e9eb;
@@ -156,7 +163,7 @@ hr {
   /* background-color: #dbeba3; */
   border-width: 0;
   border-color: #dbeba3;
-  border-bottom-width: 2px;
+  border-bottom-width: 4px;
   width: 100%;
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -165,6 +172,16 @@ hr {
   padding-top: 1em;
   padding-bottom: 1em;
   font-size: 1rem;
+}
+
+.submit {
+  background-color: #dbeba3;
+  border-color: #dbeba3;
+  color: #1d4c54;
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  margin-left: 1rem;
 }
 
 .search input[type="text"] {
@@ -180,12 +197,7 @@ hr {
 .search-icon {
   height: 20px;
   width: 20px;
-  position: absolute;
-  top: 28px;
-  right: 20px;
 }
-
-
 
 .comment-card {
   border: solid #1d4c54;
