@@ -1,7 +1,7 @@
 {% extends "idea/base.html" %} {% block content %}
 
 <div>
-  <div>
+  <div class="parent-search">
     <form action="{% url 'search-result' %}" method="post" id="form-id">
       {%csrf_token%}
       <fieldset>
@@ -12,7 +12,7 @@
           placeholder="Search"
         />
       </fieldset>
-      <a href="#" onclick="document.forms['form-id'].submit();" >
+      <a href="#" onclick="document.forms['form-id'].submit();" class="search-submit">
         <img
           class="search-icon"
           src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
@@ -53,7 +53,7 @@
       <form action="{% url 'filter-result' %}" method="post">
         {%csrf_token%}
         <fieldset>
-          <label for="filter">Choose a filter</label>
+          <label for="filter">Sort</label>
 
           <select name="Filter" id="filter">
             <option value="latest">Latest</option>
@@ -63,7 +63,7 @@
         </fieldset>
         <input type="submit" value="Apply" />
       </form>
-      <li class="list-group-item list-group-item-light">Sort</li>
+      <li class="list-group-item list-group-item-light">Chose a Tag</li>
     </div>
   </div>
 </div>
