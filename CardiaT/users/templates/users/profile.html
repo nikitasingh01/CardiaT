@@ -1,6 +1,30 @@
 {% extends "idea/base.html" %}
 {% load crispy_forms_tags%}
 {% block content %}
-    <h1>{{user.username}}</h1>    
+    <h1>Hi!  {{user.username}}</h1>    
+    <h2>Your Posts:</h2>
+    <div class="col-md-8">
+        {% if not posts%}
+        <div class="alert alert-info">
+          <p>There are no ideas yet.</p>
+        </div>
+        {% endif %} {% for idea in posts %}
+        <article class="media content-section">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ idea.author }}</a>
+              <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
+            </div>
+            <h2>
+              <a class="article-title" href="{% url 'idea-view' idea.id %}">{{ idea.title }}</a>
+            </h2>
+            <p class="article-content">{{ idea.content|truncatewords:6 }}</p>
+            <div class="article-metadata">
+              <small class="text-muted">{{ idea.tag_name}}</small>
+            </div>
+          </div>
+        </article>
+        {% endfor %}
+      </div>
 
 {% endblock content %}

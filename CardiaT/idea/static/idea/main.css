@@ -184,6 +184,20 @@ hr {
   margin-left: 1rem;
 }
 
+.apply-button{
+  /* background-color: #dbeba3; */
+  border-color: #dbeba3;
+  color: #1d4c54;
+  font-size: 0.8rem;
+  font-weight: bold;
+  border-radius: 6px;
+  /* text-align: center; */
+  /* padding-bottom: 1rem; */
+  height: 2rem;
+  width: 100%;
+  /* margin-left: 1rem; */
+}
+
 .search input[type="text"] {
   float: right;
   padding: 6px;
@@ -234,6 +248,19 @@ hr {
 
 .comment-description {
   font-size: 1rem;
+}
+
+.filter {
+  margin-bottom: 1rem;
+  margin-left: 1rem;
+  padding-top: 0.2em;
+  padding-left: 0.5rem;
+  padding-bottom: 0.2em;
+  border-radius: 6px;
+}
+
+.list {
+  background-color: white;
 }
 
 ul {

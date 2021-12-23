@@ -5,18 +5,10 @@
     <form action="{% url 'search-result' %}" method="post" id="form-id">
       {%csrf_token%}
       <fieldset>
-        <input
-          class="search"
-          type="text"
-          name="search_text"
-          placeholder="Search"
-        />
+        <input class="search" type="text" name="search_text" placeholder="Search" />
       </fieldset>
       <a href="#" onclick="document.forms['form-id'].submit();" class="search-submit">
-        <img
-          class="search-icon"
-          src="https://cdn-icons-png.flaticon.com/512/482/482631.png"
-        />
+        <img class="search-icon" src="https://cdn-icons-png.flaticon.com/512/482/482631.png" />
       </a>
     </form>
   </div>
@@ -35,13 +27,10 @@
           <small class="text-muted">{{ idea.date_posted|date:"F d, Y" }}</small>
         </div>
         <h2>
-          <a class="article-title" href="{% url 'idea-view' idea.id %}"
-            >{{ idea.title }}</a
-          >
+          <a class="article-title" href="{% url 'idea-view' idea.id %}">{{ idea.title }}</a>
         </h2>
         <p class="article-content">{{ idea.content|truncatewords:6 }}</p>
         <div class="article-metadata">
-          <a class="mr-2" href="#">{{ idea.author }}</a>
           <small class="text-muted">{{ idea.tag_name}}</small>
         </div>
       </div>
@@ -49,21 +38,31 @@
     {% endfor %}
   </div>
   <div class="col-md-4">
-    <div class="content-section">
+    <div class="content-section pt-10">
       <form action="{% url 'filter-result' %}" method="post">
         {%csrf_token%}
-        <fieldset>
-          <label for="filter">Sort</label>
-
-          <select name="Filter" id="filter">
-            <option value="latest">Latest</option>
-            <option value="oldest">Oldest</option>
-            <option value="most_comments">Most Commented</option>
-          </select>
-        </fieldset>
-        <input type="submit" value="Apply" />
+        <div class="row">
+          <fieldset class="col-sm-7">
+            <!-- <label for="filter">Sort</label> -->
+            <select name="Filter" id="filter" class="filter">
+              <option value="latest">Latest</option>
+              <option value="oldest">Oldest</option>
+              <option value="most_comments">Most Commented</option>
+            </select>
+          </fieldset>
+          <input type="submit" value="Submit" class="col-sm-4 btn btn-color apply-button" />
+        </div>
       </form>
-      <li class="list-group-item list-group-item-light">Chose a Tag</li>
+      <li class="list-group-item list-group-item-light m-3">Popular Tags
+        <ul class="list-group mt-3">
+          {% for tag in tags %}
+          <li class="list">
+            <a href="{% url 'tag-result' tag%}">{{tag}}</a>
+              
+          </li>
+          {% endfor %}
+        </ul>
+      </li>
     </div>
   </div>
 </div>

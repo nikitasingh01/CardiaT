@@ -10,10 +10,19 @@ from django.shortcuts import get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 
+def getTags(ideas):
+    tags=[]
+    for i in range(len(ideas)):
+        tags.append(ideas[i].tag_name)
+    # u have a array and u want to remove duplicates from it
+    tags=list(set(tags))
+
+    return tags[:3]
 
 def home(request):
     context = {
-        'posts': Idea.objects.all()
+        'posts': Idea.objects.all(),
+        'tags': getTags(Idea.objects.all())
     }
     return render(request, 'idea/home.html', context)
 
@@ -33,7 +42,25 @@ def search(request):
         if search_text in title:
             result_array.append(array[i])
     context = {
-        'posts':result_array
+        'posts':result_array,
+        'tags':getTags(result_array)
+
+    }
+
+    
+    #     context={Idea.objects}
+
+    return render(request,'idea/home.html',context)
+
+def popularTag(request,tag):
+    array=Idea.objects.all()
+    result_array=[]
+    for i in range(len(array)):
+        if  tag== array[i].tag_name:
+            result_array.append(array[i])
+    context = {
+        'posts':result_array,
+        'tags':getTags(result_array)
 
     }
     
@@ -50,11 +77,17 @@ def filter(request):
     elif filter=='oldest':
         array.sort(key=lambda x: x.date_posted, reverse=False)
     elif filter=='most commented':
-        pass
+        array.sort(key=lambda x: x.comments.count(), reverse=True)
     context={
-        'posts':array
+        'posts':array,
+        'tags': getTags(array)
     }
-    print(array)
+    # print(array)
+
+    # lambda x: x*x
+    # 2 -> 4
+    # ar = [{'id': 1, 'name': 'a'}, {'id': 2, 'name': 'b'}, {'id': 3, 'name': 'c'}]
+    # ar.sort(key=lambda x: x['id'])
 
     return render(request,'idea/home.html',context)
 @login_required 

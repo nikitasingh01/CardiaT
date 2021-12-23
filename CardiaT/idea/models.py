@@ -9,7 +9,7 @@ class Idea(models.Model):
     content = models.TextField()
     date_posted = models.DateTimeField(default=timezone.now)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    tag_name= models.CharField(max_length=20,default='Tag')
+    tag_name= models.CharField(max_length=20,default='general')
 
     def __str__(self):
         return self.title
